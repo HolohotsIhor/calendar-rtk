@@ -1,13 +1,12 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '../router';
-import { Login } from '../pages/Login';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { privateRoutes, publicRoutes, RouteNames } from '../../router';
 
 export const AppRouter = () => {
-    const auth = true;
+    const auth = true
 
     return (
-            auth === true
+            auth
             ?
                 <Routes>
                     {
@@ -15,9 +14,11 @@ export const AppRouter = () => {
                             <Route
                                 path={route.path}
                                 element={<route.element/>}
+                                key={route.path}
                             />
                         )
                     }
+                    <Route path="*" element={<Navigate to={RouteNames.EVENT} />} />
                 </Routes>
             :
                 <Routes>
@@ -29,6 +30,7 @@ export const AppRouter = () => {
                             />
                         )
                     }
+                    <Route path="*" element={<Navigate to={RouteNames.LOGIN} />} />
                 </Routes>
     );
 }
