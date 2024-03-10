@@ -3,25 +3,29 @@ import { Layout, Menu, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../router';
 import './navbar.styl'
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const Navbar: FC = () => {
     const navigate = useNavigate()
-    const auth = true
+    const { isAuth } = useTypedSelector( state => state.authReducer)
 
     return (
         <Layout.Header>
             <Row justify='end'>
                 {
-                    auth
+                    isAuth
                     ?
-                        <Menu
-                            theme='dark'
-                            mode='horizontal'
-                            selectable={false}
-                            style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}
-                        >
-                            <Menu.Item key={0} onClick={() => console.log('need to logout')}>Logout</Menu.Item>
-                        </Menu>
+                        <>
+                            <Menu
+                                theme='dark'
+                                mode='horizontal'
+                                selectable={false}
+                                className='menu'
+                            >
+                                <Menu.Item className='menu__item menu__item--username' key={0}>Holohots</Menu.Item>
+                                <Menu.Item className='menu__item' key={1} onClick={() => console.log('need to logout')}>Logout</Menu.Item>
+                            </Menu>
+                        </>
                     :
                         <Menu
                             theme='dark'

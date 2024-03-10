@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import './App.css';
 import { AppRouter } from './components/app-router/AppRouter';
 import { Navbar } from './components/navbar/Navbar';
 import { Layout } from 'antd';
+import './App.styl';
 
 export const App:FC = () => {
   return (
