@@ -11,5 +11,4 @@ export interface SetAuthAction {
     payload: boolean;
 }
 
-export type AuthActionTypes =
-    SetAuthAction
+export type AuthActionTypes = SetAuthAction;

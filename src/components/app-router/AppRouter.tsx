@@ -4,7 +4,7 @@ import { privateRoutes, publicRoutes, RouteNames } from '../../router';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const AppRouter = () => {
-    const { isAuth } = useTypedSelector( state => state.authReducer)
+    const { isAuth } = useTypedSelector( state => state.auth)
 
     return (
             isAuth
@@ -28,6 +28,7 @@ export const AppRouter = () => {
                             <Route
                                 path={route.path}
                                 element={<route.element/>}
+                                key={route.path}
                             />
                         )
                     }

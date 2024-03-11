@@ -1,6 +1,6 @@
-import { Event } from '../pages/Event';
-import React, { ComponentType } from 'react';
-import { Login } from '../pages/Login';
+import { Event } from '../pages/event/Event';
+import React from 'react';
+import { Login } from '../pages/login/Login';
 
 export interface IRoute {
     path: string;

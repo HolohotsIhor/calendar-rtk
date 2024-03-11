@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import { Layout, Menu, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../router';
-import './navbar.styl'
+import './Navbar.styl'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 export const Navbar: FC = () => {
     const navigate = useNavigate()
-    const { isAuth } = useTypedSelector( state => state.authReducer)
+    const { isAuth } = useTypedSelector( state => state.auth)
 
     return (
         <Layout.Header>
