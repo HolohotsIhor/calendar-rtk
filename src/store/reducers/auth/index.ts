@@ -1,7 +1,10 @@
 import { AuthActionEnum, AuthActionTypes, IAuthState } from './types';
 
 const initialState: IAuthState = {
-    isAuth: false
+    isAuth: false,
+    user: { username: '', password: '' },
+    isLoading: false,
+    error: ''
 }
 
 export const authReducer = (state = initialState, action: AuthActionTypes): IAuthState => {

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { AppRouter } from './components/app-router/AppRouter';
+import { AppRouter } from './components/appRouter/AppRouter';
 import { Navbar } from './components/navbar/Navbar';
 import { Layout } from 'antd';
 import './App.styl';
