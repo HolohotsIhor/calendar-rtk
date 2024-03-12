@@ -9,6 +9,15 @@ export const Navbar: FC = () => {
     const navigate = useNavigate()
     const { isAuth } = useTypedSelector( state => state.auth)
 
+    const menuPrivatItems = [
+        { key: 0, label: 'Holohots' },
+        { key: 1, label: 'Logout', onClick: () => console.log('need to logout') }
+    ];
+
+    const menuPublicItems = [
+        { key: 0, label: 'Logout', onClick: () => navigate(RouteNames.LOGIN) }
+    ];
+
     return (
         <Layout.Header>
             <Row justify='end'>
@@ -19,21 +28,20 @@ export const Navbar: FC = () => {
                             <Menu
                                 theme='dark'
                                 mode='horizontal'
-                                selectable={false}
+                                selectable={ false }
                                 className='menu'
+                                items={ menuPrivatItems }
                             >
-                                <Menu.Item className='menu__item menu__item--username' key={0}>Holohots</Menu.Item>
-                                <Menu.Item className='menu__item' key={1} onClick={() => console.log('need to logout')}>Logout</Menu.Item>
                             </Menu>
                         </>
                     :
                         <Menu
                             theme='dark'
                             mode='horizontal'
-                            selectable={false}
-                            style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}
+                            selectable={ false }
+                            className='menu'
+                            items={ menuPublicItems }
                         >
-                            <Menu.Item key={1} onClick={() => navigate(RouteNames.LOGIN)}>Login</Menu.Item>
                         </Menu>
                 }
 
