@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes, RouteNames } from '../../router';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/redux';
 
 export const AppRouter = () => {
-    const { isAuth } = useTypedSelector( state => state.auth)
+    const { isAuth } = useTypedSelector(state => state.auth)
 
     return (
             isAuth
