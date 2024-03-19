@@ -16,11 +16,26 @@ export const AuthActionCreators = {
     setError: (error: string): SetErrorAction => ({ type: AuthActionEnum.SET_ERROR, payload: error }),
     login: (username: string, password: string) => async (dispatch: AppDispatchType) => {
         try {
-            dispatch(AuthActionCreators.setIsLoading(true))
-            const mockUsers = await axios.get('./users.json')
-            console.log(mockUsers)
+            setTimeout(async () => {
+                dispatch(AuthActionCreators.setIsLoading(true))
+                const response = await axios.get<IUser[]>('./users.json')
+                const mockUser = response.data.find( user => user.username === username && user.password === password)
+
+                if (mockUser) {
+                    localStorage.setItem('auth', 'true')
+                    localStorage.setItem('username', mockUser.username)
+                    dispatch(AuthActionCreators.setIsAuth(true))
+                    dispatch(AuthActionCreators.setUser(mockUser))
+                } else {
+                    localStorage.setItem('auth', 'false')
+                    dispatch(AuthActionCreators.setError('Can\'t find user'))
+                }
+                dispatch(AuthActionCreators.setIsLoading(false))
+            }, 1000)
         } catch(e) {
+            dispatch(AuthActionCreators.setIsLoading(true))
             dispatch(AuthActionCreators.setError('Login error'))
+            dispatch(AuthActionCreators.setIsLoading(false))
         }
     },
     logout: () => async (dispatch: AppDispatchType) => {
