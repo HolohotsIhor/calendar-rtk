@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import './LoginForm.styl'
 import { inputRules } from '../../utils/input-rules';
-import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
-import { AuthActionCreators } from '../../store/reducers/auth/actionCreators';
+import { useTypedSelector } from '../../hooks/redux';
+import { useActions } from '../../hooks/useActions';
 
 type FieldType = {
     username?: string;
@@ -11,12 +11,12 @@ type FieldType = {
 };
 
 export const LoginForm: FC = () => {
-    const dispatch = useTypedDispatch()
     const { error, isLoading} = useTypedSelector( state => state.auth)
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    const { login } = useActions()
 
-    const submit = () => dispatch(AuthActionCreators.login(username, password))
+    const submit = () => login(username, password)
 
     return (
         <Form
