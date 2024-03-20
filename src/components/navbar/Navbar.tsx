@@ -3,15 +3,17 @@ import { Layout, Menu, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../../router';
 import './Navbar.styl'
-import { useTypedSelector } from '../../hooks/redux';
+import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
+import { AuthActionCreators } from '../../store/reducers/auth/actionCreators';
 
 export const Navbar: FC = () => {
     const navigate = useNavigate()
     const { isAuth } = useTypedSelector(state => state.auth)
+    const dispatch = useTypedDispatch()
 
     const menuPrivatItems = [
         { key: 0, label: 'Holohots' },
-        { key: 1, label: 'Logout', onClick: () => console.log('need to logout') }
+        { key: 1, label: 'Logout', onClick: () => dispatch(AuthActionCreators.logout()) }
     ];
 
     const menuPublicItems = [

@@ -10,7 +10,6 @@ type FieldType = {
     password?: string;
 };
 
-
 export const LoginForm: FC = () => {
     const dispatch = useTypedDispatch()
     const { error, isLoading} = useTypedSelector( state => state.auth)
@@ -31,7 +30,6 @@ export const LoginForm: FC = () => {
                 className='login-form__item'
                 rules={[inputRules.required('Please input your username!')]}
             >
-                // Нужно добавить debouce для onChange
                 <Input
                     className='login-form__input'
                     value={ username }
@@ -44,7 +42,6 @@ export const LoginForm: FC = () => {
                 className='login-form__item'
                 rules={[inputRules.required('Please input your password!')]}
             >
-                // Нужно добавить debouce для onChange
                 <Input.Password
                     className='login-form__input'
                     value={ password }

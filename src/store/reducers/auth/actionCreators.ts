@@ -27,7 +27,6 @@ export const AuthActionCreators = {
                     dispatch(AuthActionCreators.setIsAuth(true))
                     dispatch(AuthActionCreators.setUser(mockUser))
                 } else {
-                    localStorage.setItem('auth', 'false')
                     dispatch(AuthActionCreators.setError('Can\'t find user'))
                 }
                 dispatch(AuthActionCreators.setIsLoading(false))
@@ -39,10 +38,9 @@ export const AuthActionCreators = {
         }
     },
     logout: () => async (dispatch: AppDispatchType) => {
-        try {
-
-        } catch(e) {
-
-        }
+        localStorage.removeItem('auth')
+        localStorage.removeItem('username')
+        dispatch(AuthActionCreators.setUser({} as IUser))
+        dispatch(AuthActionCreators.setIsAuth(false))
     },
 }
