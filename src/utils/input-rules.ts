@@ -1,5 +1,5 @@
 export const inputRules = {
-    required: (message: string) => ({
+    required: (message: string = 'Required field' ) => ({
         required: true,
         message
     })

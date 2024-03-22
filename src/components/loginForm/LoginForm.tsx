@@ -25,8 +25,8 @@ export const LoginForm: FC = () => {
         >
             { error && <div className='login-form__error'> {error} </div> }
             <Form.Item<FieldType>
-                label="Username"
-                name="username"
+                label='Username'
+                name='username'
                 className='login-form__item'
                 rules={[inputRules.required('Please input your username!')]}
             >
@@ -37,8 +37,8 @@ export const LoginForm: FC = () => {
                 />
             </Form.Item>
             <Form.Item<FieldType>
-                label="Password"
-                name="password"
+                label='Password'
+                name='password'
                 className='login-form__item'
                 rules={[inputRules.required('Please input your password!')]}
             >
@@ -49,7 +49,7 @@ export const LoginForm: FC = () => {
                 />
             </Form.Item>
             <Form.Item>
-                <Button type="primary" htmlType="submit" loading={isLoading}>
+                <Button type='primary' htmlType='submit' loading={isLoading}>
                     Submit
                 </Button>
             </Form.Item>
