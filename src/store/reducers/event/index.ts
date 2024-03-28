@@ -1,6 +1,6 @@
 import { EventActionEnum, EventActionTypes, EventState } from './types';
 
-const initialState = {
+const initialState: EventState = {
     guests: [],
     events: [],
 }

@@ -2,12 +2,16 @@ import React, { FC } from 'react';
 import { Button, DatePicker, DatePickerProps, Form, Input, Row, Select } from 'antd';
 import { inputRules } from '../../utils/input-rules';
 import './EventForm.styl'
+import { IUser } from '../../models/IUser';
 
-export const EventForm: FC  = () => {
+interface EventFormProps {
+    guests: IUser[]
+}
+
+export const EventForm: FC<EventFormProps> = (props) => {
     const onChange: DatePickerProps['onChange'] = (date, dateString) => {
         console.log(date, dateString);
     };
-
 
     return (
         <Form>
@@ -29,12 +33,9 @@ export const EventForm: FC  = () => {
             <Select
                 defaultValue="Slect users"
                 style={{ width: 120 }}
-                options={[
-                    { value: 'jack', label: 'Jack' },
-                    { value: 'lucy', label: 'Lucy' },
-                    { value: 'Yiminghe', label: 'yiminghe' },
-                    { value: 'disabled', label: 'Disabled', disabled: true },
-                ]}
+                options={
+                    props.guests.map( guest => ({ value: guest.username, label: guest.username }))
+                }
             />
             </Form.Item>
             <Row className='event-form__action'>

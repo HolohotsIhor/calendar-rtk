@@ -23,7 +23,7 @@ export const LoginForm: FC = () => {
             onFinish={ submit }
             className='login-form'
         >
-            { error && <div className='login-form__error'> {error} </div> }
+            { error && <div className='login-form__error'> { error } </div> }
             <Form.Item<FieldType>
                 label='Username'
                 name='username'

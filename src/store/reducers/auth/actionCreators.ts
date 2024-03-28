@@ -6,8 +6,8 @@ import {
     SetIsLoadingAction,
     SetUserAction
 } from './types';
-import axios from 'axios';
 import { AppDispatchType } from '../../index';
+import UserService from '../../../api/UserService';
 
 export const AuthActionCreators = {
     setUser: (user: IUser): SetUserAction => ({ type: AuthActionEnum.SET_USER, payload: user }),
@@ -18,7 +18,7 @@ export const AuthActionCreators = {
         try {
             setTimeout(async () => {
                 dispatch(AuthActionCreators.setIsLoading(true))
-                const response = await axios.get<IUser[]>('./users.json')
+                const response = await UserService.getUsers()
                 const mockUser = response.data.find( user => user.username === username && user.password === password)
 
                 if (mockUser) {
