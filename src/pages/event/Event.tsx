@@ -8,8 +8,8 @@ import { useTypedSelector } from '../../hooks/redux';
 
 export const Event: FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { fetchGuests } = useActions()
-    const { guests} = useTypedSelector( state => state.event )
+    const { fetchGuests, createEvent } = useActions()
+    const { guests, events} = useTypedSelector( state => state.event )
 
     const showModal = () => setIsModalOpen(true);
     const handleOk = () => setIsModalOpen(false);
@@ -17,10 +17,11 @@ export const Event: FC = () => {
 
     useEffect(() => {
         fetchGuests()
-    }, []);
+    }, [fetchGuests]);
 
     return (
         <Layout>
+            {JSON.stringify(events)}
             <CalendarEvent events={[]}/>
             <Row>
                 <Button className='button' onClick={showModal}>Add event</Button>
@@ -32,7 +33,10 @@ export const Event: FC = () => {
                 onCancel={ handleCancel }
                 footer={ null }
             >
-                <EventForm guests={ guests } />
+                <EventForm
+                    guests={ guests }
+                    submit={ event => createEvent(event)}
+                />
             </Modal>
         </Layout>
     );
