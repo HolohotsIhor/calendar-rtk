@@ -8,11 +8,11 @@ import { useActions } from '../../hooks/useActions';
 
 export const Navbar: FC = () => {
     const navigate = useNavigate()
-    const { isAuth } = useTypedSelector(state => state.auth)
+    const { isAuth, user } = useTypedSelector(state => state.auth)
     const { logout } = useActions()
 
     const menuPrivatItems = [
-        { key: 0, label: 'Holohots' },
+        { key: 0, label: user.username },
         { key: 1, label: 'Logout', onClick: () => logout() }
     ];
 

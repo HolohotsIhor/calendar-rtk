@@ -5,24 +5,31 @@ import './Event.styl'
 import { EventForm } from '../../components/eventForm/EventForm';
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/redux';
+import { IEvent } from '../../models/IEvent';
 
 export const Event: FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { fetchGuests, createEvent } = useActions()
+    const { fetchGuests, createEvent, fetchEvents } = useActions()
     const { guests, events} = useTypedSelector( state => state.event )
-
+    const { user } = useTypedSelector(state => state.auth)
     const showModal = () => setIsModalOpen(true);
     const handleOk = () => setIsModalOpen(false);
     const handleCancel = () => setIsModalOpen(false);
 
     useEffect(() => {
         fetchGuests()
-    }, [fetchGuests]);
+        fetchEvents(user.username)
+        // eslint-disable-next-line
+    }, []);
+
+    const addNewEvent = (event: IEvent) => {
+        setIsModalOpen(false);
+        createEvent(event);
+    }
 
     return (
         <Layout>
-            {JSON.stringify(events)}
-            <CalendarEvent events={[]}/>
+            <CalendarEvent events={events}/>
             <Row>
                 <Button className='button' onClick={showModal}>Add event</Button>
             </Row>
@@ -35,7 +42,7 @@ export const Event: FC = () => {
             >
                 <EventForm
                     guests={ guests }
-                    submit={ event => createEvent(event)}
+                    submit={addNewEvent}
                 />
             </Modal>
         </Layout>

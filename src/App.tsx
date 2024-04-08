@@ -14,7 +14,7 @@ export const App:FC = () => {
         setUser({ username: localStorage.getItem('username' || '')} as IUser)
         setIsAuth(true)
     }
-  }, []);
+  }, [setUser, setIsAuth]);
 
   return (
     <Layout>

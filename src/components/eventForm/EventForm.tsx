@@ -44,7 +44,7 @@ export const EventForm: FC<EventFormProps> = (props) => {
             <Form.Item
                 label='Event date'
                 name='date'
-                rules={ [inputRules.required()] }
+                rules={ [inputRules.required(), inputRules.isDateAfter('Can\'t creating event for the past time')] }
             >
                 <DatePicker
                     onChange={ handleDate }
@@ -56,7 +56,6 @@ export const EventForm: FC<EventFormProps> = (props) => {
                 rules={ [inputRules.required()] }
             >
                 <Select
-                    defaultValue='Slect users'
                     style={{ width: 120 }}
                     options={ props.guests.map( guest => ({ value: guest.username, label: guest.username })) }
                     onChange={ (guest: string) => setEvent({...event, guest})  }
