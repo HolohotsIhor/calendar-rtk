@@ -17,7 +17,8 @@ export const Navbar: FC = () => {
     ];
 
     const menuPublicItems = [
-        { key: 0, label: 'Login', onClick: () => navigate(RouteNames.LOGIN) }
+        { key: 0, label: 'RTK', onClick: () => navigate(RouteNames.RTK) },
+        { key: 1, label: 'Login', onClick: () => navigate(RouteNames.LOGIN) }
     ];
 
     return (
