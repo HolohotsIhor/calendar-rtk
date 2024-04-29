@@ -5,7 +5,6 @@ import { EventReducer } from './reducers/event';
 import { githubApi } from './github/indexApi';
 import { githubReducer } from './github/githubSlice';
 
-
 const rootReducer = combineReducers({
     auth: authReducer,
     event: EventReducer,

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IUser, ServerResponse } from '../../models/IGithub';
+import { IRepo, IUser, ServerResponse } from '../../models/IGithub';
 
 export const githubApi = createApi({
     reducerPath: 'github/api',
@@ -19,9 +19,20 @@ export const githubApi = createApi({
             }),
             // Transform response to array
             transformResponse: (response: ServerResponse<IUser>) => response.items
-        })
+        }),
+        getUserRepos: build.query<IRepo[], string>({
+            query: (username: string) => ({
+                url: `users/${username}/repos`,
+                headers: {
+                    Authorization: `airslateToken`,
+                },
+            })
+        }),
     })
 })
 
-// Кастомный хук useSearchUsersQuery, генерируется toolkit. Lazy - делаем запрос, когда захотим, а не сразу
-export const { useSearchUsersQuery } = githubApi;
+// Hook useSearchUsersQuery, Ganereted by toolkit.
+// Lazy - we make a request when we want, not right away
+export const {
+    useSearchUsersQuery,
+    useLazyGetUserReposQuery } = githubApi;
