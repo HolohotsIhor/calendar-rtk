@@ -27,7 +27,7 @@ export const githubApi = createApi({
                     Authorization: `airslateToken`,
                 },
             })
-        }),
+        })
     })
 })
 

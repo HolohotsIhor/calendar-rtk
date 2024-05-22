@@ -29,8 +29,9 @@ export const githubSlice = createSlice({
             state.favourites.push(action.payload)
             localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.favourites))
         },
-        setSearch(state, action: PayloadAction<string>) {
-            state.search = action.payload
+        removeFavourite(state, action: PayloadAction<string>) {
+            state.favourites = state.favourites.filter( favourite => favourite !== action.payload)
+            localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.favourites))
         }
     }
 });
